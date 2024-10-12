@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
@@ -11,25 +11,29 @@
     <meta name="subject" content="Stream Timer" />
     <meta name="copyright" content="RingoMar" />
     <meta name="url" content="ringomar.github.io/timer" />
-    <meta data-rh="true" name="twitter:card" content="summary_large_image">
-    <meta data-rh="true" property="og:image" content="https://feelsunnyman.github.io/tools/docusaurus-social-card.jpg">
-    <meta data-rh="true" name="twitter:image" content="https://feelsunnyman.github.io/tools/docusaurus-social-card.jpg">
-    <meta data-rh="true" property="og:url" content="https://ringomar.github.io/timer">
-    <meta data-rh="true" property="og:locale" content="en">
+    <meta data-rh="true" name="twitter:card" content="summary_large_image" />
+    <meta data-rh="true" property="og:image"
+        content="https://feelsunnyman.github.io/tools/docusaurus-social-card.jpg" />
+    <meta data-rh="true" name="twitter:image"
+        content="https://feelsunnyman.github.io/tools/docusaurus-social-card.jpg" />
+    <meta data-rh="true" property="og:url" content="https://ringomar.github.io/timer" />
+    <meta data-rh="true" property="og:locale" content="en" />
     <meta name="rating" content="General" />
     <meta name="author" content="ringomar, github.com/ringomar" />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <title>Elapsed Timer</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-0W202PFGPJ"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
 
-        gtag('config', 'G-0W202PFGPJ');
+        gtag("config", "G-0W202PFGPJ");
     </script>
 </head>
 
@@ -44,6 +48,32 @@
     </div>
 
     <script>
+        // configurations
+
+        /*
+        Stroke: Number
+        Set the outline of the numbers & text of the timer
+        */
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const timestampStroke = new URLSearchParams(window.location.search).get(
+                "stroke"
+            );
+            const containerSelect = document.querySelectorAll(".num");
+
+            const strokeAmount =
+                timestampStroke === null || isNaN(timestampStroke) || timestampStroke > 10
+                    ? "2"
+                    : timestampStroke;
+            containerSelect.forEach(i => {
+
+                i.style.webkitTextStroke = `${strokeAmount}px black`;
+                i.style.textStroke = `${strokeAmount}px black`;
+            });
+        });
+    </script>
+
+    <script>
         const h = document.querySelector(".hours_time");
         const m = document.querySelector(".min_time");
         const s = document.querySelector(".sec_time");
@@ -55,7 +85,9 @@
             }
         }
 
-        const timestampParam = new URLSearchParams(window.location.search).get("time");
+        const timestampParam = new URLSearchParams(window.location.search).get(
+            "time"
+        );
         var startTimeUnix = timestampParam
             ? Date.parse(timestampParam) / 1000
             : Date.parse(new Date().toISOString()) / 1000;
