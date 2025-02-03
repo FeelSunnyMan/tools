@@ -5,8 +5,15 @@ body {
     color: white;
 }
 
+@font-face {
+    font-family: "Burbank";
+    src: url("Burbank-Big-Condensed-Black.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+  }
 
 .container {
+    font-family: "burbank";
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 1.5fr 0.5fr;
